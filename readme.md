@@ -1,6 +1,7 @@
 # 使用 Visual Studio 2019 Community 在 Win10 下进行 STM32 嵌入式编程
 
 作者：武汉大学计算机学院 胡继承
+
 时间：2019年11月18日
 
 ----
@@ -17,5 +18,27 @@
 3. 使用 ST-LINK/V2-1 将程序下载到电路板
 4. 使用 VS 2019 Community 调试程序
 
+
+## ST-LINK/V2-1引脚定义
+
+**ST-LINK/V2-1 只能调试 STM32 系列芯片**
+       
+| foot | CN4 | description |
+| :---: | --- | --- |
+| 1 | VDD_TARGET | target VDD |
+| $\color{red}{2}$ | **SWCLK SWD** | clock |
+| 3 | GND | ground |
+| 4 | SWDIO SWD | data I/O |
+| 5 | NRST | target MCU RESET |
+| 6 | SWO | reserved |
+
+![ST-LINK_V2-1.png](ST-LINK_V2-1.png)
+
+**调试外接电路板时需要将 CN2 两个跳线悬空**
+
+
+如果不接1、3脚，会对目标MCU板的电源造成很剧烈的干扰。
+
+![connOtherBoard.png](connOtherBoard.png)
 
 
