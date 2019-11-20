@@ -1,0 +1,32 @@
+{
+  "configurations": [
+    {
+      "inheritEnvironments": [
+        "gcc-arm"
+      ],
+      "name": "gccarm",
+      "intelliSenseMode": "linux-gcc-x64",
+      "includePath": [
+        "Inc",
+        "${env.INCLUDE}"
+      ],
+      "defines": [
+      ]
+    },
+
+    {
+      "inheritEnvironments": [
+        "gcc-arm"
+      ],
+      "name": "gccarm_ex",
+      "intelliSenseMode": "linux-gcc-x64",
+      "compilerPath": "arm-none-eabi-g++",
+      "includePath": [
+        "Inc",
+        "${env.INCLUDE}"
+      ],
+      "defines": [
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": "0.2.1",
+  "outDir": "${workspaceRoot}\\bin",
+  "tasks": [
+    {
+      "taskLabel": "task-Makefile",
+      "appliesTo": "Makefile",
+      "type": "launch",
+      "contextType": "build",
+      "command": "nmake"
+    },
+    {
+      "taskLabel": "task-nucleo_f411re-blinky",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}
