@@ -45,8 +45,8 @@ https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 https://sourceware.org/bugzilla/show_bug.cgi?id=24065
 
 尽管该 bug 已经被修复，但 VS 所集成的 armgcc 没有及时更新从而导致该 bug 的依然存在，为了尽快投入工作，我们试图绕过 VS 解决该问题：
-1. 从 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads 下载最新半的 
-gcc-arm-none-eabi-9-2019-q4-major-win32.exe，下载的文件位于 E:\projects\yabee\jicheng
+1. 从 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads 下载最新版的 
+gcc-arm-none-eabi-9-2019-q4-major-win32.exe，下载的文件位于 Docs:\\projects\yabee\jicheng
 2. 修改 VS 的相应配置文件使其使用该工具链
 
 参考网页:
@@ -107,7 +107,48 @@ MD5: 5fa382a547abe0b0d5c0a6e9eaa75c7b
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 4. 使用 VS 2019 Community 调试程序
+
+本节内容参见：
+[Debugging an embedded ARM device in Visual Studio](https://devblogs.microsoft.com/cppblog/debugging-an-embedded-arm-device-in-visual-studio/)
+
+上文中采用mbed作为框架生成程序, 这里我们采用STM32CubeMX来生成框架程序。
+按照上文的指示, 首先要在makefile中加上生成debug的标志-g来指示编译器在编译的时候产生调试信息。
+因此我们屏蔽了由STM32CubeMX框架生成的makefile文件的下面内容
+```cpp
+#ifeq ($(DEBUG), 1)
+#CFLAGS += -g -gdwarf-2
+CFLAGS += -g
+#endif
+```
+
+右击makefile生成目标文件NucleoF411re.bin, 再右击NucleoF411re.bin, 选择 Debug and Launch Settings 选项
+![debug_n_launch_settings.PNG](debug_n_launch_settings.PNG)
+
+然后选择 C/C++ Debug microcontroller (gdbserver)
+
+
+
 
 
 
