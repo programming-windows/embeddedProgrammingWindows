@@ -25,6 +25,11 @@
 1. STM32CubeMX
 2. mbed
 
+本仓库中有两个文件夹：
+1. NucleoF411re文件夹, 里面存放的是由STM32CubeMX生成的框架, 下载到开发板后可以驱动版上的LED交替闪烁
+2. nucleo_f411re-bliknky文件夹, 里面存放的是由mbed生成的框架, 下载到开发板后亦是驱动版上的LED交替闪烁
+
+
 ### 1.1 STM32CubeMX
 
 首先去官网注册并下载
@@ -32,6 +37,25 @@
 ，有些慢，需要有耐心。
 
 使用的库有两种，一是所谓的硬件抽象层HAL库(Hardware Abstraction Layer), 另一个是所谓的 LL 库（Low Layer)。两种都支持 STM32 全系列的芯片。软件方向的爱好者使用HAL会比较方便，要求的硬件知识更少。硬件方向的可能更喜欢LL。
+
+cubeMX 生成的框架位由于 GNU Arm Embedded Toolchain 的新版本 arm-none-eabi-objcopy 的一个 bug 导致无法编译通过，参见：
+
+https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
+
+https://sourceware.org/bugzilla/show_bug.cgi?id=24065
+
+尽管该 bug 已经被修复，但 VS 所集成的 armgcc 没有及时更新从而导致该 bug 的依然存在，为了尽快投入工作，我们试图绕过 VS 解决该问题：
+1. 从 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads 下载最新半的 
+gcc-arm-none-eabi-9-2019-q4-major-win32.exe，下载的文件位于 E:\projects\yabee\jicheng
+2. 修改 VS 的相应配置文件使其使用该工具链
+
+参考网页:
+
+[STM32CubeMX](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-configurators-and-code-generators/stm32cubemx.html)
+
+[STM32CubeF1](https://www.st.com/content/st_com/en/products/embedded-software/mcu-mpu-embedded-software/stm32-embedded-software/stm32cube-mcu-mpu-packages/stm32cubef1.html)
+
+[STM32 + W5500 以太网编程](https://app.yinxiang.com/shard/s60/nl/12379950/e98bb8b6-d929-42e3-9d56-d0eacda3ddce)
 
 
 
