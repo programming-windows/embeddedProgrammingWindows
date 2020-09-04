@@ -30,4 +30,10 @@
 *.exe
 *.out
 *.app
-/.vs/embeddedProgrammingWindows/v16
+
+v16/
+ipch/
+
+/.vs/embeddedProgrammingWindows/
+/nucleo_f411re-blinky/BUILD
+/nucleo_f411re-blinky/.vs/nucleo_f411re-blinky/

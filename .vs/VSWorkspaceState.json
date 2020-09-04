@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NucleoF411re",
+    "\\nucleo_f411re-blinky"
   ],
-  "SelectedNode": "\\readme.md",
+  "SelectedNode": "\\nucleo_f411re-blinky\\Makefile",
   "PreviewInSolutionExplorer": false
 }

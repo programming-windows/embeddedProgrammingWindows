@@ -64,7 +64,12 @@ gcc-arm-none-eabi-9-2019-q4-major-win32.exe，下载的文件位于 Docs:\\proje
 
 
 
-## 2. 使用 VS 2019 Community 进行编码和编译
+## 2. 使用 VS 2019 Community 进行编码和交叉编译
+
+微软官方博客参考[ARM GCC Cross Compilation in Visual Studio](https://devblogs.microsoft.com/cppblog/arm-gcc-cross-compilation-in-visual-studio/)。
+该文尽管针对VS2017 15.5, 但依然非常有借鉴意义。
+
+
 
 
 [GNU Arm Embedded Toolchain Version 8-2019-q3-updateReleased: July 10, 2019](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
@@ -76,7 +81,7 @@ Windows 32-bit ZIP package
 MD5: 5fa382a547abe0b0d5c0a6e9eaa75c7b
 
 
-下载后，安装或者解压即可。目录下有一个bin的文件夹，可以看到有下列文件：
+下载后，安装或者解压即可(**路径及文件名中都不要包含空格, 不然后续处理会非常非常麻烦, 切记切记!!!**)。目录下有一个bin的文件夹，可以看到有下列文件：
 
 
 
@@ -145,11 +150,30 @@ CFLAGS += -g
 右击makefile生成目标文件NucleoF411re.bin, 再右击NucleoF411re.bin, 选择 Debug and Launch Settings 选项
 ![debug_n_launch_settings.PNG](debug_n_launch_settings.PNG)
 
-然后选择 C/C++ Debug microcontroller (gdbserver)
+然后选择 C/C++ Debug microcontroller (gdbserver)。
 
+上述步骤将在solution所在的文件夹的.vs子文件夹中生成配置文件 launch.vs.json, 该配置文件中包含一系列与嵌入式调试相关的参数。
+这里你需要填写与你的电路板相关的硬件参数, 仿真器参数及提供gdbserver接口的相关软件。
 
+一些宏参数需要手工替换, 包括:
 
+* $\{workspaceRootFolderName}, your folder name
+* $\{env.gccpath}, your gcc path followed by Linux\gcc_arm\bin
+* $\{debugInfo.linuxNatvisPath}, path to a Natvis file if you have one. This is fine to remove as it is for specific scenarios.
 
+这里使用 OpenOCD 来作为调试服务器, 大部分的板子的配置过程基本与这里的配置相同。
+
+1. 首先修改指向生成的elf文件的路径, 我这里如下:
+```cpp
+      "program": "E:\\projects\\yabee\\jicheng\\cubeMX\\NucleoF411re\\build\\NucleoF411re.elf",
+```
+
+2. 修改 miDebuggerPath 指向 arm-none-eabi-gdb.exe, 路径中若有空格的话处理起来非常麻烦, 网上有相应的文章讨论这个问题。
+强烈建议大家在安装gcc工具时路径中一定不要包含空格, 这样减少许多麻烦。
+```cpp
+      "miDebuggerPath": "D:\\GNUtools\\9_2019-q4-major\\bin\\arm-none-eabi-gdb.exe",
+```
+3. 
 
 
 
